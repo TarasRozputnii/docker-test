@@ -5,7 +5,13 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-  - script: echo '$env:Build_SourceBranch'
+  - bash: echo This is a script that could use $SYSTEM_ACCESSTOKEN
+    env:
+      SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+  - powershell: Write-Host "This is a script that could use $env:SYSTEM_ACCESSTOKEN"
+    env:
+      SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+      
 # - task: Docker@2
 #   displayName: Build an image
 #   inputs:
