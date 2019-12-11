@@ -7,7 +7,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  tag: $(Build.BuildUri)
+  tag: $(Build.SourceBranch)
 
 steps:
   - script: echo '$(tag)'
