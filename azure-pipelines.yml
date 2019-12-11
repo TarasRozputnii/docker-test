@@ -11,6 +11,8 @@ variables:
 
 steps:
   - script: echo '$(tag)'
+  - script: export isTag=[regex]::IsMatch($(tag), "^(refs\/tags\/)")
+  - script: echo '$(isTag)'
 
   
   #- script: git describe --exact-match $(Build.SourceVersion)
