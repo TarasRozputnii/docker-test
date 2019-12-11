@@ -9,7 +9,13 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-  - script: ${tagname}
+   - bash: echo This is a script that could use $SYSTEM_ACCESSTOKEN
+     env:
+      SYSTEM_ACCESSTOKEN: $(Build.BuildUri)
+      
+   - script: $TESST
+   - script: $SYSTEM_ACCESSTOKEN
+
       
 # - task: Docker@2
 #   displayName: Build an image
