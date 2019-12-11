@@ -1,9 +1,12 @@
 trigger:
-  branches:
-    include:
-      - refs/tags/1.0
-    exclude:
-      - refs/tags/{othertagname}
+- master
+
+# trigger:
+#   branches:
+#     include:
+#       - refs/tags/1.0
+#     exclude:
+#       - refs/tags/{othertagname}
 
 pool:
   vmImage: 'ubuntu-latest'
