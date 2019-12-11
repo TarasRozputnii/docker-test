@@ -7,14 +7,14 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  tag: git describe --exact-match $(Build.SourceVersion)
+  tag: $(git version)
 
 steps:
-  - script: git describe --exact-match $(Build.SourceVersion)
-
   - script: echo '$(tag)'
 
-  - script: echo $(Build.SourceVersion)
+  
+  #- script: git describe --exact-match $(Build.SourceVersion)
+  #- script: echo $(Build.SourceVersion)
       
 # - task: Docker@2
 #   displayName: Build an image
