@@ -22,8 +22,8 @@ steps:
     env:
       SYSTEM_ACCESSTOKEN: $(System.AccessToken)
 
-  - bash: echo $(SYSTEM_ACCESSTOKEN)     
-  - script: echo '$(SYSTEM_ACCESSTOKEN)'
+  - bash: echo $env:SYSTEM_ACCESSTOKEN     
+  - script: echo $env:configuration
   - script: echo '$(TEST)'
 
       
