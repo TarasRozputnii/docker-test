@@ -5,24 +5,25 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: Docker@2
-  displayName: Build an image
-  inputs:
-    containerRegistry: 'dockerpush'
-    repository: 'nginx-test'
-    command: 'build'
-    Dockerfile: './Dockerfile'
-    arguments: '-t docker-push.rga.k8s.fireblink.com/nginx-test:0.1'
+  - script: Write-Host $env:Build_SourceBranch
+# - task: Docker@2
+#   displayName: Build an image
+#   inputs:
+#     containerRegistry: 'dockerpush'
+#     repository: 'nginx-test'
+#     command: 'build'
+#     Dockerfile: './Dockerfile'
+#     arguments: '-t docker-push.rga.k8s.fireblink.com/nginx-test:0.1'
     
-- task: Docker@2
-  displayName: Push image
-  inputs:
-    containerRegistry: dockerpush
-    repository: nginx-test
-    command: push
-    tags: 0.1
+# - task: Docker@2
+#   displayName: Push image
+#   inputs:
+#     containerRegistry: dockerpush
+#     repository: nginx-test
+#     command: push
+#     tags: 0.1
       
-- script: docker images
+# - script: docker images
 
 # steps:
 # - script: git switch -c feature/fixDockerfile && ls -la
