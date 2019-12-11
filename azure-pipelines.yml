@@ -6,39 +6,32 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-variables:
-  test: test
-  
 steps:
-  - script: VERSION_TAG=`git describe --tags` && echo "##vso[task.setvariable variable=VERSION_TAG]$VERSION_TAG"
-    displayName: Set the tag name as an environment variable
-  
-  - script: echo $'(VERSION_TAG)'
-  - script: echo $(VERSION_TAG)
-  - script: echo $VERSION_TAG
+- script: TAG=`git describe --tags` && echo "##vso[task.setvariable variable=VERSION_TAG]$VERSION_TAG"
+  displayName: Set the tag name as an environment variable
 
-  
-  #- script: git describe --exact-match $(Build.SourceVersion)
-  #- script: echo $(Build.SourceVersion)
-      
-# - task: Docker@2
-#   displayName: Build an image
-#   inputs:
-#     containerRegistry: 'dockerpush'
-#     repository: 'nginx-test'
-#     command: 'build'
-#     Dockerfile: './Dockerfile'
-#     arguments: '-t docker-push.rga.k8s.fireblink.com/nginx-test:0.1'
+- task: Docker@2
+  displayName: Build an image
+  inputs:
+    containerRegistry: 'dockerpush'
+    repository: 'nginx-test'
+    command: 'build'
+    Dockerfile: './Dockerfile'
+    arguments: '-t docker-push.rga.k8s.fireblink.com/nginx-test:$TAG'
     
-# - task: Docker@2
-#   displayName: Push image
-#   inputs:
-#     containerRegistry: dockerpush
-#     repository: nginx-test
-#     command: push
-#     tags: 0.1
+- task: Docker@2
+  displayName: Push image
+  inputs:
+    containerRegistry: dockerpush
+    repository: nginx-test
+    command: push
+    tags: $TAG
       
+#   - script: echo $VERSION_TAG
 # - script: docker images
+  
+#- script: git describe --exact-match $(Build.SourceVersion)
+#- script: echo $(Build.SourceVersion)
 
 # steps:
 # - script: git switch -c feature/fixDockerfile && ls -la
