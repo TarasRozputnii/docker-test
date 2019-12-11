@@ -7,7 +7,7 @@ trigger:
 # trigger:
 #   branches:
 #     include:
-#       - refs/tags/1.0
+#       - refs/tags/{tagname}
 #     exclude:
 #       - refs/tags/{othertagname}
 
