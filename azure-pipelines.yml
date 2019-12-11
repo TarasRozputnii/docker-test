@@ -11,25 +11,23 @@ jobs:
   steps:
   - script: TAG=`git describe --tags` && echo "##vso[task.setvariable variable=TAG]$TAG"
     displayName: Set the tag name as an environment variable
-  
-  - script: echo $(Agent.JobName)
 
-  # - task: Docker@2
-  #   displayName: Build an image
-  #   inputs:
-  #     containerRegistry: 'dockerpush'
-  #     repository: 'nginx-test'
-  #     command: 'build'
-  #     Dockerfile: './Dockerfile'
-  #     arguments: '-t docker-push.rga.k8s.fireblink.com/nginx-test:$(TAG)'
+  - task: Docker@2
+    displayName: Build an image
+    inputs:
+      containerRegistry: 'dockerpush'
+      repository: $(Build.Repository.Name)
+      command: 'build'
+      Dockerfile: './Dockerfile'
+      arguments: '-t docker-push.rga.k8s.fireblink.com/$(Build.Repository.Name):$(TAG)'
       
-  # - task: Docker@2
-  #   displayName: Push image
-  #   inputs:
-  #     containerRegistry: dockerpush
-  #     repository: nginx-test
-  #     command: push
-  #     tags: $(TAG)
+  - task: Docker@2
+    displayName: Push image
+    inputs:
+      containerRegistry: dockerpush
+      repository: $(Build.Repository.Name)
+      command: push
+      tags: $(TAG)
       
 
 
