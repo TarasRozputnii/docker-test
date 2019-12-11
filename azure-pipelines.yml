@@ -10,16 +10,8 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-latest'
-
-variables:
-  tag: {tagname}
   
-steps:
-   - bash: echo This is a script that could use $SYSTEM_ACCESSTOKEN
-     env:
-      SYSTEM_ACCESSTOKEN: $(Build.BuildUri)
-      
-   - script: echo '$(TEST)'
+steps:      
    - script: echo '$(SYSTEM_ACCESSTOKEN)'
 
       
