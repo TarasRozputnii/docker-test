@@ -7,10 +7,12 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  tag: ${{ [regex]::IsMatch("refs/heads/1.1.1", "^(refs\/tags\/)") }}
-
+  test: test
+  
 steps:
-  - script: echo '$(tag)'
+  - script: VERSION_TAG=`git describe --tags` && echo "##vso[task.setvariable variable=VERSION_TAG]$VERSION_TAG"
+    displayName: Set the tag name as an environment variable
+
   
   #- script: git describe --exact-match $(Build.SourceVersion)
   #- script: echo $(Build.SourceVersion)
