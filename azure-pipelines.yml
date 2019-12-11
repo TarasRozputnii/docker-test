@@ -7,7 +7,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  tag: '[regex]::IsMatch("refs/heads/1.1.1", "^(refs\/tags\/)")'
+  tag: ${{ [regex]::IsMatch("refs/heads/1.1.1", "^(refs\/tags\/)") }}
 
 steps:
   - script: echo '$(tag)'
