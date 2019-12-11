@@ -10,11 +10,9 @@ variables:
   tag: git describe --exact-match $(Build.SourceVersion)
 
 steps:
-  - script: export TEST1=$(git describe --exact-match $(Build.SourceVersion))
+  - script: git describe --exact-match $(Build.SourceVersion)
 
   - script: echo '$(tag)'
-
-  - script: echo '$(TEST1)'
 
   - script: echo $(Build.SourceVersion)
       
