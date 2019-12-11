@@ -5,7 +5,6 @@ trigger:
     - refs/tags/*
     exclude:
     - develop
-    - refs/tags/*
 
 pool:
   vmImage: 'ubuntu-latest'
