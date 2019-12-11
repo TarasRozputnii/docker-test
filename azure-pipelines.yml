@@ -7,13 +7,10 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  tag: $(Build.SourceBranch)
+  tag: '[regex]::IsMatch("refs/heads/1.1.1", "^(refs\/tags\/)")'
 
 steps:
   - script: echo '$(tag)'
-  - script: export isTag=[regex]::IsMatch($(tag), "^(refs\/tags\/)")
-  - script: echo '$(isTag)'
-
   
   #- script: git describe --exact-match $(Build.SourceVersion)
   #- script: echo $(Build.SourceVersion)
