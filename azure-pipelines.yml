@@ -1,10 +1,7 @@
 trigger:
-  branches:   
+  tags:
     include:
-    - master
-    - refs/tags/*
-    exclude:
-    - develop
+      - '*'
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -16,7 +13,7 @@ steps:
   - script: export TEST1=$(git describe --exact-match $(Build.SourceVersion))
 
   - script: echo '$(tag)'
-  - script: echo '$(TEST1)'
+  
 
       
 # - task: Docker@2
