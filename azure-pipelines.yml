@@ -6,13 +6,16 @@ trigger:
     exclude:
     - develop
 
+
+
 pool:
   vmImage: 'ubuntu-latest'
 
 variables:
   configuration: Build.TriggeredBy.BuildNumber
 
-steps:      
+steps: 
+   - bash: echo $(configuration)     
    - script: echo '$(configuration)'
    - script: echo '$(TEST)'
 
