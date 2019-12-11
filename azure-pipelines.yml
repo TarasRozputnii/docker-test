@@ -19,7 +19,7 @@ jobs:
       repository: 'nginx-test'
       command: 'build'
       Dockerfile: './Dockerfile'
-      arguments: '-t docker-push.rga.k8s.fireblink.com/nginx-test:$TAG'
+      arguments: '-t docker-push.rga.k8s.fireblink.com/nginx-test:$(TAG)'
       
   - task: Docker@2
     displayName: Push image
@@ -27,7 +27,7 @@ jobs:
       containerRegistry: dockerpush
       repository: nginx-test
       command: push
-      tags: $TAG
+      tags: $(TAG)
       
 #   - script: echo $VERSION_TAG
 # - script: docker images
