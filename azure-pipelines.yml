@@ -3,18 +3,15 @@ trigger:
     include:
     - refs/tags/*
 
-# trigger:
-#   branches:
-#     include:
-#       - refs/tags/{tagname}
-#     exclude:
-#       - refs/tags/{othertagname}
-
 pool:
   vmImage: 'ubuntu-latest'
-  
+
+variables:
+  configuration: Build.TriggeredBy.BuildNumber
+
 steps:      
-   - script: echo '$(SYSTEM_ACCESSTOKEN)'
+   - script: echo '$(configuration)'
+   - script: echo '$(TEST)'
 
       
 # - task: Docker@2
