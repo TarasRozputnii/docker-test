@@ -13,8 +13,8 @@ steps:
      env:
       SYSTEM_ACCESSTOKEN: $(Build.BuildUri)
       
-   - script: $TESST
-   - script: $SYSTEM_ACCESSTOKEN
+   - script: $(TEST)
+   - script: $(SYSTEM_ACCESSTOKEN)
 
       
 # - task: Docker@2
