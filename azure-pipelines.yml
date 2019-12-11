@@ -5,7 +5,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-  - script: Write-Host $env:Build_SourceBranch
+  - script: echo '$env:Build_SourceBranch'
 # - task: Docker@2
 #   displayName: Build an image
 #   inputs:
