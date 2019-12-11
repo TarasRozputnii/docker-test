@@ -16,16 +16,16 @@ jobs:
     displayName: Build an image
     inputs:
       containerRegistry: 'dockerpush'
-      repository: $(Build.Repository.Name)
+      repository: nexus-test
       command: 'build'
       Dockerfile: './Dockerfile'
-      arguments: '-t docker-push.rga.k8s.fireblink.com/$(Build.Repository.Name):$(TAG)'
+      arguments: '-t docker-push.rga.k8s.fireblink.com/nexus-test:$(TAG)'
       
   - task: Docker@2
     displayName: Push image
     inputs:
       containerRegistry: dockerpush
-      repository: $(Build.Repository.Name)
+      repository: nexus-test
       command: push
       tags: $(TAG)
       
