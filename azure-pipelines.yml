@@ -12,7 +12,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  configuration: Build.TriggeredBy.BuildNumber
+  tag: git describe --exact-match $(Build.SourceVersion)
 
 steps:
   - bash: echo This is a script that could use $SYSTEM_ACCESSTOKEN
@@ -22,9 +22,8 @@ steps:
     env:
       SYSTEM_ACCESSTOKEN: $(System.AccessToken)
 
-  - bash: echo $env:SYSTEM_ACCESSTOKEN     
   - script: echo $env:configuration
-  - script: echo '$(TEST)'
+  - script: echo '$(tag)'
 
       
 # - task: Docker@2
