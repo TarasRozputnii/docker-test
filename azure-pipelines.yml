@@ -6,13 +6,11 @@ trigger:
     exclude:
     - develop
 
-
-
 pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  tag: git describe --exact-match $(Build.SourceVersion)
+  tag: $(git describe --exact-match $(Build.SourceVersion))
 
 steps:
   - bash: echo This is a script that could use $SYSTEM_ACCESSTOKEN
