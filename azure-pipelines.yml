@@ -1,8 +1,7 @@
 trigger:
   branches:   
     include:
-    - develop
-    - refs/tags/{tagname}
+    - tags/*
 
 # trigger:
 #   branches:
